@@ -25,7 +25,7 @@ function routeValuesFromRoutesTs(source) {
 }
 
 function routeValuesFromAppPages() {
-  return walkFiles(path.join(appRoot, "app"), (filePath) => filePath.endsWith("/page.tsx"))
+  return walkFiles(path.join(appRoot, "app"), (filePath) => filePath.replaceAll(path.sep, "/").endsWith("/page.tsx"))
     .map((filePath) => {
       const relative = path.relative(path.join(appRoot, "app"), filePath);
       const route = relative.replace(/(?:^|\/)page\.tsx$/, "");
